@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+      <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Inscription</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Create New Account </h2><br>
+
+        <form onsubmit="signup()" >
+
+            <div class="form-group">
+                
+                <i class="fa fa-envelope"></i>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+            </div>
+            <div class="form-group">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <input type="text" class="form-control" id="name" placeholder="Enter nom" name="name" required>
+            </div>
+            <div class="form-group">
+
+                <i class="fa fa-lock" aria-hidden="true"></i>
+                <input type="password" class="form-control" id="password" placeholder="Enter password" name="pwd" required>
+            </div>
+
+            <button type="submit" id="save_btn" class="butt"  onclick="window.location.href = 'signin.html';" >S'inscrire</button>
+        </form>
+
+
+        <div id="message">
+
+        <h3>Password must contain the following:</h3>
+        <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+        <p id="number" class="invalid">A <b>number</b></p>
+        </div>
+
+    </div>
+
+    <script src="main.js"></script>
+    <script type="text/javascript">
+        
+              //script de validation des champs
+            var formValid = document.getElementById('save_btn');
+            var prenom = document.getElementById('name');
+            var mail = document.getElementById('email');
+            var tel = document.getElementById('tel');
+            var pas = document.getElementById('password');
+
+            var prenomValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/;
+
+            var emailvalid = /^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$'/;
+
+            formValid.addEventListener('click', validation);
+            function validation(event) {
+
+                //Si les champs est vide
+                if (prenom.validity.valueMissing){
+                    event.preventDefault();
+                    alert(" Please Enter your Name.");
+
+                //Si le format de données est incorrect
+                }else if (prenomValid.test(prenom.value) == false){
+
+                    event.preventDefault();
+
+                    alert("Nam invalide ! please enter a valid Name");
+                    window.location.href = 'signup.html';
+
+                }else {
+
+                       alert(" Name is valide ");
+                  }
+
+                if(mail.validity.valueMissing){
+                    event.preventDefault();
+
+                    alert(" Please enter your Adresse e-mail");
+
+                //Si le format de données est incorrect
+                }else if (/^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/.test(mail.value)) {
+
+                           alert("Adresse e-mail valide !");
+                   } else {
+
+                       alert("Adresse e-mail invalide !Please enter a valid e-mail");
+                        window.location.href = 'signup.html';
+                  }   
+          }
+
+
+
+               pas.onfocus = function() {
+                 document.getElementById("message").style.display = "block";
+               }
+
+               pas.onblur = function() {
+                   document.getElementById("message").style.display = "none";
+                }
+
+ // When the user starts to type something inside the password field
+  pas.onkeyup = function() {
+  // Validate lowercase letters
+  var lowerCaseLetters = /[a-z]/g;
+  if(pas.value.match(lowerCaseLetters)) {  
+    letter.classList.remove("invalid");
+    letter.classList.add("valid");
+  } else {
+    letter.classList.remove("valid");
+    letter.classList.add("invalid");
+  }
+  
+  // Validate capital letters
+  var upperCaseLetters = /[A-Z]/g;
+  if(pas.value.match(upperCaseLetters)) {  
+    capital.classList.remove("invalid");
+    capital.classList.add("valid");
+  } else {
+    capital.classList.remove("valid");
+    capital.classList.add("invalid");
+  }
+
+  // Validate numbers
+  var numbers = /[0-9]/g;
+  if(pas.value.match(numbers)) {  
+    number.classList.remove("invalid");
+    number.classList.add("valid");
+  } else {
+    number.classList.remove("valid");
+    number.classList.add("invalid");
+  }
+}
+
+
+    </script>
+</body>
+
+</html>
