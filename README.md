@@ -1,5 +1,5 @@
 # Registration-and-Authentication-with-local-storage
-Registration and Authentication with local storage and code hashing
+Registration and Authentication with local storage and code hashing -JS
 
 
 ![alt text](https://github.com/FadwaHs/Registration-and-Authentication-with-local-storage/blob/main/images/Signup.png)
